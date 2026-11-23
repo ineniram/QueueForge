@@ -1,0 +1,47 @@
+# Local configuration and credentials
+.env
+.env.*
+*.env
+*.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Database state and local exports
+*.db
+*.db-shm
+*.db-wal
+*.db-journal
+*.sqlite
+*.sqlite3
+*.sqlite*-shm
+*.sqlite*-wal
+*.rdb
+*.aof
+*.dump
+*.backup
+dump*.sql
+backup*.sql
+*-dump.sql
+*.sql.bak
+*.sql.gz
+pgdata/
+backups/
+redis-data/
+
+# Dependencies, build output, and local runs
+node_modules/
+dist/
+bin/
+coverage/
+*.test
+*.prof
+coverage.out
+__pycache__/
+*.py[cod]
+.benchmark-local/
+*.log
+*.tmp
+.DS_Store

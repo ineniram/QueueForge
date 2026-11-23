@@ -1,0 +1,112 @@
+name: queueforge
+
+x-backend-env: &backend-env
+  DATABASE_URL: postgres://queueforge:${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}@postgres:5432/queueforge?sslmode=disable
+  REDIS_URL: redis://redis:6379/0
+  HEARTBEAT_INTERVAL: ${HEARTBEAT_INTERVAL:-750ms}
+  JOB_LEASE: ${JOB_LEASE:-6s}
+  WORKER_STALE_AFTER: ${WORKER_STALE_AFTER:-2500ms}
+  WORKER_OFFLINE_AFTER: ${WORKER_OFFLINE_AFTER:-5s}
+
+x-backend: &backend
+  image: queueforge-backend:local
+  build: ./backend
+  environment: *backend-env
+  stop_grace_period: 25s
+
+x-worker: &worker
+  <<: *backend
+  command: ["worker"]
+  depends_on:
+    api:
+      condition: service_healthy
+
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: queueforge
+      POSTGRES_DB: queueforge
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U queueforge -d queueforge"]
+      interval: 3s
+      timeout: 3s
+      retries: 15
+
+  redis:
+    image: redis:7.4-alpine
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 3s
+      timeout: 3s
+      retries: 15
+
+  api:
+    <<: *backend
+    ports:
+      - "127.0.0.1:${API_PORT:-8080}:8080"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1:8080/health"]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+
+  worker-1:
+    <<: *worker
+    environment:
+      <<: *backend-env
+      WORKER_NAME: worker-1
+
+  worker-2:
+    <<: *worker
+    environment:
+      <<: *backend-env
+      WORKER_NAME: worker-2
+
+  worker-3:
+    <<: *worker
+    environment:
+      <<: *backend-env
+      WORKER_NAME: worker-3
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "127.0.0.1:${DASHBOARD_PORT:-5173}:80"
+    depends_on:
+      api:
+        condition: service_healthy
+
+  benchmark-worker:
+    <<: *worker
+    profiles: [benchmark]
+    environment:
+      <<: *backend-env
+      WORKER_NAME: benchmark
+
+  tests:
+    profiles: [test]
+    image: golang:1.26
+    working_dir: /src
+    volumes:
+      - ./backend:/src:ro
+    environment:
+      TEST_DATABASE_URL: postgres://queueforge:${POSTGRES_PASSWORD}@postgres:5432/queueforge?sslmode=disable
+      TEST_REDIS_URL: redis://redis:6379/0
+    command: ["go", "test", "-count=1", "./..."]
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+volumes:
+  postgres-data:

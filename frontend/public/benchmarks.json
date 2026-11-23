@@ -1,0 +1,665 @@
+{
+  "schema_version": 1,
+  "status": "completed",
+  "started_at": "2026-11-23T02:24:59.794458+00:00",
+  "completed_at": "2026-11-23T02:33:08.588497+00:00",
+  "configuration": {
+    "workers": [
+      1,
+      3,
+      5,
+      10
+    ],
+    "trials_per_cell": 3,
+    "jobs_per_trial": 96,
+    "warmup_jobs_per_workload": 16,
+    "worker_concurrency": 1,
+    "submission_clients": 8,
+    "terminal_poll_seconds": 0.025,
+    "max_attempts": 1,
+    "workloads": {
+      "sleep": {
+        "type": "sleep",
+        "payload": {
+          "duration_ms": 120
+        }
+      },
+      "compute": {
+        "type": "compute",
+        "payload": {
+          "limit": 2000000
+        }
+      },
+      "mixed": [
+        {
+          "type": "sleep",
+          "payload": {
+            "duration_ms": 120
+          }
+        },
+        {
+          "type": "compute",
+          "payload": {
+            "limit": 2000000
+          }
+        }
+      ]
+    },
+    "crash_trials": 3,
+    "crash_jobs_per_trial": 9,
+    "crash_workers": 3,
+    "crash_sleep_ms": 10000,
+    "heartbeat_ms": 750,
+    "lease_ms": 6000,
+    "stale_ms": 2500,
+    "offline_ms": 5000
+  },
+  "environment": {
+    "host_os": "macOS-15.7.4-arm64-arm-64bit-Mach-O",
+    "host_arch": "arm64",
+    "host_cpu": "Apple M4",
+    "host_logical_cpus": 10,
+    "host_ram_bytes": 17179869184,
+    "docker_engine": "29.7.2",
+    "docker_vm": {
+      "cpu_count": 10,
+      "memory_bytes": 8319504384,
+      "architecture": "aarch64"
+    },
+    "compose": "5.4.0",
+    "postgres": "postgres (PostgreSQL) 17.12",
+    "redis": "Redis server v=7.4.12 sha=00000000:0 malloc=jemalloc-5.3.0 bits=64 build=6d565d4e3893fa59",
+    "go": "go version go1.26.11 linux/arm64",
+    "python": "3.14.0"
+  },
+  "scaling": [
+    {
+      "workload": "compute",
+      "workers": 1,
+      "throughput": {
+        "median": 194.97092963573434,
+        "min": 186.2862155304986,
+        "max": 197.7517350103504
+      },
+      "speedup": 1.0,
+      "efficiency": 1.0,
+      "total_seconds": {
+        "median": 0.49238109588623047,
+        "min": 0.485457181930542,
+        "max": 0.5153360366821289
+      },
+      "queue_mean_ms": {
+        "median": 230.9220482905706,
+        "min": 225.86437811454138,
+        "max": 243.14182996749878
+      },
+      "queue_p95_ms": {
+        "median": 430.649995803833,
+        "min": 424.454927444458,
+        "max": 451.6339302062988
+      },
+      "execution_mean_ms": {
+        "median": 4.7532568375269575,
+        "min": 4.657978812853496,
+        "max": 4.892915487289429
+      },
+      "execution_p95_ms": {
+        "median": 5.985021591186523,
+        "min": 5.277872085571289,
+        "max": 6.3800811767578125
+      },
+      "occupancy": {
+        "median": 0.9211233918832309,
+        "min": 0.9114827090377131,
+        "max": 0.9267469044100415
+      },
+      "success": 288,
+      "failed": 0,
+      "excluded_trials": 0
+    },
+    {
+      "workload": "compute",
+      "workers": 3,
+      "throughput": {
+        "median": 492.25248997226095,
+        "min": 463.3784689815651,
+        "max": 517.6156112610876
+      },
+      "speedup": 2.5247481298465364,
+      "efficiency": 0.8415827099488454,
+      "total_seconds": {
+        "median": 0.1950218677520752,
+        "min": 0.18546581268310547,
+        "max": 0.20717406272888184
+      },
+      "queue_mean_ms": {
+        "median": 76.25073442856471,
+        "min": 74.8833492398262,
+        "max": 84.93796239296596
+      },
+      "queue_p95_ms": {
+        "median": 135.79511642456055,
+        "min": 134.26899909973145,
+        "max": 144.5789337158203
+      },
+      "execution_mean_ms": {
+        "median": 5.409643054008484,
+        "min": 5.2028422554334,
+        "max": 5.691332121690114
+      },
+      "execution_p95_ms": {
+        "median": 7.623910903930664,
+        "min": 7.007122039794922,
+        "max": 8.63504409790039
+      },
+      "occupancy": {
+        "median": 0.8876367543989409,
+        "min": 0.8790802550047893,
+        "max": 0.8976907914470583
+      },
+      "success": 288,
+      "failed": 0,
+      "excluded_trials": 0
+    },
+    {
+      "workload": "compute",
+      "workers": 5,
+      "throughput": {
+        "median": 636.8666125733699,
+        "min": 465.1121666327832,
+        "max": 651.1388314361811
+      },
+      "speedup": 3.266469589919034,
+      "efficiency": 0.6532939179838068,
+      "total_seconds": {
+        "median": 0.15073800086975098,
+        "min": 0.14743399620056152,
+        "max": 0.20640182495117188
+      },
+      "queue_mean_ms": {
+        "median": 51.285065710544586,
+        "min": 46.70725762844086,
+        "max": 66.3953572511673
+      },
+      "queue_p95_ms": {
+        "median": 85.56199073791504,
+        "min": 82.24320411682129,
+        "max": 100.7838249206543
+      },
+      "execution_mean_ms": {
+        "median": 6.538331508636475,
+        "min": 6.473079323768616,
+        "max": 8.538040022055307
+      },
+      "execution_p95_ms": {
+        "median": 9.986162185668945,
+        "min": 9.554147720336914,
+        "max": 17.289161682128906
+      },
+      "occupancy": {
+        "median": 0.8328090079574086,
+        "min": 0.794229258691112,
+        "max": 0.8429746613344804
+      },
+      "success": 288,
+      "failed": 0,
+      "excluded_trials": 0
+    },
+    {
+      "workload": "compute",
+      "workers": 10,
+      "throughput": {
+        "median": 717.2572967638619,
+        "min": 621.8389918458117,
+        "max": 729.8051101359912
+      },
+      "speedup": 3.678790977218599,
+      "efficiency": 0.3678790977218599,
+      "total_seconds": {
+        "median": 0.13384318351745605,
+        "min": 0.13154196739196777,
+        "max": 0.15438079833984375
+      },
+      "queue_mean_ms": {
+        "median": 18.93300066391627,
+        "min": 12.906630833943685,
+        "max": 19.366838037967682
+      },
+      "queue_p95_ms": {
+        "median": 29.865026473999023,
+        "min": 23.090124130249023,
+        "max": 34.44504737854004
+      },
+      "execution_mean_ms": {
+        "median": 10.419711470603943,
+        "min": 10.294981300830841,
+        "max": 12.000215550263723
+      },
+      "execution_p95_ms": {
+        "median": 17.240047454833984,
+        "min": 17.016172409057617,
+        "max": 20.27606964111328
+      },
+      "occupancy": {
+        "median": 0.7473614082464788,
+        "min": 0.7462201939708426,
+        "max": 0.7513329962100822
+      },
+      "success": 288,
+      "failed": 0,
+      "excluded_trials": 0
+    },
+    {
+      "workload": "mixed",
+      "workers": 1,
+      "throughput": {
+        "median": 14.94060147680917,
+        "min": 14.917010139856098,
+        "max": 14.978486948564287
+      },
+      "speedup": 1.0,
+      "efficiency": 1.0,
+      "total_seconds": {
+        "median": 6.42544412612915,
+        "min": 6.409192085266113,
+        "max": 6.435606002807617
+      },
+      "queue_mean_ms": {
+        "median": 3176.0662868618965,
+        "min": 3165.7655437787375,
+        "max": 3179.5579766233764
+      },
+      "queue_p95_ms": {
+        "median": 6111.385107040405,
+        "min": 6096.449136734009,
+        "max": 6118.44801902771
+      },
+      "execution_mean_ms": {
+        "median": 65.71777909994125,
+        "min": 65.56690732638042,
+        "max": 65.76853493849437
+      },
+      "execution_p95_ms": {
+        "median": 124.8009204864502,
+        "min": 124.32694435119629,
+        "max": 125.01001358032227
+      },
+      "occupancy": {
+        "median": 0.9818631474732012,
+        "min": 0.9810699025610005,
+        "max": 0.982093065645913
+      },
+      "success": 288,
+      "failed": 0,
+      "excluded_trials": 0
+    },
+    {
+      "workload": "mixed",
+      "workers": 3,
+      "throughput": {
+        "median": 46.37712290422039,
+        "min": 45.84242535195296,
+        "max": 46.432619669285664
+      },
+      "speedup": 3.104100124496798,
+      "efficiency": 1.0347000414989327,
+      "total_seconds": {
+        "median": 2.06998610496521,
+        "min": 2.067512035369873,
+        "max": 2.094130039215088
+      },
+      "queue_mean_ms": {
+        "median": 976.4014234145483,
+        "min": 964.5196149746577,
+        "max": 978.0253395438194
+      },
+      "queue_p95_ms": {
+        "median": 1894.3591117858887,
+        "min": 1891.4940357208252,
+        "max": 1906.4610004425049
+      },
+      "execution_mean_ms": {
+        "median": 63.85257343451182,
+        "min": 63.76981238524119,
+        "max": 64.34009224176407
+      },
+      "execution_p95_ms": {
+        "median": 122.58386611938477,
+        "min": 121.8409538269043,
+        "max": 122.67398834228516
+      },
+      "occupancy": {
+        "median": 0.9858201421898022,
+        "min": 0.9831686252436125,
+        "max": 0.9882807523966068
+      },
+      "success": 288,
+      "failed": 0,
+      "excluded_trials": 0
+    },
+    {
+      "workload": "mixed",
+      "workers": 5,
+      "throughput": {
+        "median": 74.73358268458946,
+        "min": 74.16317906936952,
+        "max": 74.90210326940026
+      },
+      "speedup": 5.00204645713836,
+      "efficiency": 1.000409291427672,
+      "total_seconds": {
+        "median": 1.2845630645751953,
+        "min": 1.2816729545593262,
+        "max": 1.294442892074585
+      },
+      "queue_mean_ms": {
+        "median": 554.2344326774279,
+        "min": 543.7836274504662,
+        "max": 556.8447808424631
+      },
+      "queue_p95_ms": {
+        "median": 1113.555908203125,
+        "min": 1097.3308086395264,
+        "max": 1121.5269565582275
+      },
+      "execution_mean_ms": {
+        "median": 63.69864443937937,
+        "min": 63.46897780895233,
+        "max": 63.83603811264038
+      },
+      "execution_p95_ms": {
+        "median": 122.05195426940918,
+        "min": 121.78587913513184,
+        "max": 123.40211868286133
+      },
+      "occupancy": {
+        "median": 0.9507919860498842,
+        "min": 0.9468567051253691,
+        "max": 0.9520855822213248
+      },
+      "success": 288,
+      "failed": 0,
+      "excluded_trials": 0
+    },
+    {
+      "workload": "mixed",
+      "workers": 10,
+      "throughput": {
+        "median": 147.64576590199977,
+        "min": 146.46514328117158,
+        "max": 147.76296167991563
+      },
+      "speedup": 9.88218353398796,
+      "efficiency": 0.9882183533987959,
+      "total_seconds": {
+        "median": 0.6502048969268799,
+        "min": 0.6496891975402832,
+        "max": 0.6554460525512695
+      },
+      "queue_mean_ms": {
+        "median": 237.24843810002008,
+        "min": 236.6364151239395,
+        "max": 237.36469695965448
+      },
+      "queue_p95_ms": {
+        "median": 483.814001083374,
+        "min": 481.38999938964844,
+        "max": 486.1319065093994
+      },
+      "execution_mean_ms": {
+        "median": 63.42881917953491,
+        "min": 63.404651979605354,
+        "max": 63.53372583786646
+      },
+      "execution_p95_ms": {
+        "median": 122.04909324645996,
+        "min": 121.85907363891602,
+        "max": 122.2829818725586
+      },
+      "occupancy": {
+        "median": 0.9364996588021886,
+        "min": 0.9286571436885717,
+        "max": 0.9387931496362928
+      },
+      "success": 288,
+      "failed": 0,
+      "excluded_trials": 0
+    },
+    {
+      "workload": "sleep",
+      "workers": 1,
+      "throughput": {
+        "median": 7.995102385744308,
+        "min": 7.99400255023838,
+        "max": 8.000619300460707
+      },
+      "speedup": 1.0,
+      "efficiency": 1.0,
+      "total_seconds": {
+        "median": 12.00735092163086,
+        "min": 11.99907112121582,
+        "max": 12.009002923965454
+      },
+      "queue_mean_ms": {
+        "median": 5907.626745601495,
+        "min": 5903.221219778061,
+        "max": 5919.623633225759
+      },
+      "queue_p95_ms": {
+        "median": 11332.929849624634,
+        "min": 11304.654121398926,
+        "max": 11346.184968948364
+      },
+      "execution_mean_ms": {
+        "median": 122.89010733366013,
+        "min": 122.88344899813335,
+        "max": 122.97119200229645
+      },
+      "execution_p95_ms": {
+        "median": 125.71501731872559,
+        "min": 125.64396858215332,
+        "max": 125.7328987121582
+      },
+      "occupancy": {
+        "median": 0.9830320224722112,
+        "min": 0.9825189903277202,
+        "max": 0.9831436937616447
+      },
+      "success": 479,
+      "failed": 1,
+      "excluded_trials": 2
+    },
+    {
+      "workload": "sleep",
+      "workers": 3,
+      "throughput": {
+        "median": 24.0190408971269,
+        "min": 24.018444874510955,
+        "max": 24.139222109901805
+      },
+      "speedup": 3.0042193005500626,
+      "efficiency": 1.0014064335166875,
+      "total_seconds": {
+        "median": 3.996829032897949,
+        "min": 3.9769301414489746,
+        "max": 3.9969282150268555
+      },
+      "queue_mean_ms": {
+        "median": 1903.9190337061882,
+        "min": 1901.0082632303238,
+        "max": 1920.1175346970558
+      },
+      "queue_p95_ms": {
+        "median": 3697.058916091919,
+        "min": 3693.856954574585,
+        "max": 3715.6128883361816
+      },
+      "execution_mean_ms": {
+        "median": 122.7193996310234,
+        "min": 122.25690235694249,
+        "max": 122.72606045007706
+      },
+      "execution_p95_ms": {
+        "median": 125.03290176391602,
+        "min": 123.48389625549316,
+        "max": 125.05888938903809
+      },
+      "occupancy": {
+        "median": 0.9825874216978897,
+        "min": 0.9825097116902719,
+        "max": 0.9837288401542708
+      },
+      "success": 288,
+      "failed": 0,
+      "excluded_trials": 0
+    },
+    {
+      "workload": "sleep",
+      "workers": 5,
+      "throughput": {
+        "median": 38.5018306034207,
+        "min": 38.39388891214424,
+        "max": 38.539127744832314
+      },
+      "speedup": 4.815676991463112,
+      "efficiency": 0.9631353982926225,
+      "total_seconds": {
+        "median": 2.4933879375457764,
+        "min": 2.4909749031066895,
+        "max": 2.5003979206085205
+      },
+      "queue_mean_ms": {
+        "median": 1111.2565596898396,
+        "min": 1109.435461461544,
+        "max": 1117.0752495527267
+      },
+      "queue_p95_ms": {
+        "median": 2207.6900005340576,
+        "min": 2196.1019039154053,
+        "max": 2213.1800651550293
+      },
+      "execution_mean_ms": {
+        "median": 122.47577557961147,
+        "min": 122.30860690275829,
+        "max": 122.4801813562711
+      },
+      "execution_p95_ms": {
+        "median": 124.17292594909668,
+        "min": 123.92187118530273,
+        "max": 124.23920631408691
+      },
+      "occupancy": {
+        "median": 0.9427334051435762,
+        "min": 0.9404980953863907,
+        "max": 0.9431083128777541
+      },
+      "success": 288,
+      "failed": 0,
+      "excluded_trials": 0
+    },
+    {
+      "workload": "sleep",
+      "workers": 10,
+      "throughput": {
+        "median": 76.79581077539792,
+        "min": 76.51628635278736,
+        "max": 77.35042066462628
+      },
+      "speedup": 9.605356763451702,
+      "efficiency": 0.9605356763451702,
+      "total_seconds": {
+        "median": 1.250068187713623,
+        "min": 1.241105079650879,
+        "max": 1.2546348571777344
+      },
+      "queue_mean_ms": {
+        "median": 514.5351737737656,
+        "min": 505.08058816194534,
+        "max": 517.9167961080869
+      },
+      "queue_p95_ms": {
+        "median": 1079.5109272003174,
+        "min": 1049.1681098937988,
+        "max": 1082.240104675293
+      },
+      "execution_mean_ms": {
+        "median": 122.42387235164642,
+        "min": 122.05731868743896,
+        "max": 122.91169663270314
+      },
+      "execution_p95_ms": {
+        "median": 126.2049674987793,
+        "min": 123.67987632751465,
+        "max": 134.30500030517578
+      },
+      "occupancy": {
+        "median": 0.9404746575654844,
+        "min": 0.9401640535508508,
+        "max": 0.9441184945669755
+      },
+      "success": 288,
+      "failed": 0,
+      "excluded_trials": 0
+    }
+  ],
+  "timing_exclusions": [
+    {
+      "workload": "sleep",
+      "workers": 1,
+      "trial": 1,
+      "database_seconds": 59.62813711166382,
+      "client_seconds": 13.067089292017044
+    },
+    {
+      "workload": "sleep",
+      "workers": 1,
+      "trial": 3,
+      "database_seconds": 13.232019901275635,
+      "client_seconds": 12.00561474999995
+    }
+  ],
+  "failure": {
+    "timings": {
+      "stale": {
+        "median": 3.16,
+        "min": 2.95,
+        "max": 3.22,
+        "observations": 3
+      },
+      "offline": {
+        "median": 5.69,
+        "min": 5.5,
+        "max": 5.78,
+        "observations": 3
+      },
+      "lease_expired": {
+        "median": 6.61,
+        "min": 6.58,
+        "max": 6.68,
+        "observations": 3
+      },
+      "recovered": {
+        "median": 6.61,
+        "min": 6.58,
+        "max": 6.68,
+        "observations": 3
+      },
+      "reassigned": {
+        "median": 9.8,
+        "min": 9.28,
+        "max": 9.81,
+        "observations": 3
+      },
+      "lease_deadline": {
+        "median": 5.8872599601745605,
+        "min": 5.66797399520874,
+        "max": 5.911535024642944,
+        "observations": 3
+      }
+    },
+    "completed": 27,
+    "failed": 0,
+    "duplicates": 3,
+    "trials": 3
+  }
+}

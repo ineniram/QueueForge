@@ -1,0 +1,13 @@
+services:
+  api:
+    environment:
+      QUEUEFORGE_DEMO: "1"
+  worker-1:
+    environment:
+      QUEUEFORGE_DEMO: "1"
+  worker-2:
+    environment:
+      QUEUEFORGE_DEMO: "1"
+  worker-3:
+    environment:
+      QUEUEFORGE_DEMO: "1"
